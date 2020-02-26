@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  jenkins-python3:
+    image: prashaanth27/jenkins-python3:0.6
+    container_name: jenkins-python3
+    volumes:
+     - /home/vagrant/monitoring/jenkins:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /usr/bin/docker:/usr/bin/docker
+    environment:
+     JENKINS_HOST_HOME: "./jenkins"
+    ports:
+     - "2708:3030"
+     - "2709:8080"
+    restart: always
+networks:
+  default:
+    external:
+      name: monitoring_default
